@@ -267,6 +267,35 @@
     .lb-next{right:8px}
     .lb-btn{background:rgba(0,0,0,.4)}
   }
+
+  /* MODAL — PDFs & videos */
+  .modal{
+    position:fixed;inset:0;z-index:110;display:none;
+    background:rgba(16,24,40,.92);
+    align-items:center;justify-content:center;padding:20px;
+  }
+  .modal.on{display:flex}
+  .modal-box{
+    width:min(1100px,96vw);height:min(800px,90vh);
+    background:#0f1520;border-radius:14px;overflow:hidden;
+    display:flex;flex-direction:column;box-shadow:0 24px 64px rgba(0,0,0,.5);
+  }
+  .modal.video .modal-box{width:min(960px,96vw);height:auto}
+  .modal-bar{
+    display:flex;align-items:center;gap:16px;padding:10px 16px;
+    background:#141b28;color:#cfd6e0;font-size:.88rem;flex-shrink:0;
+  }
+  .modal-title{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .modal-ext{color:#9db4e8;font-weight:600;flex-shrink:0}
+  .modal-ext:hover{color:#fff}
+  .modal-x{
+    border:none;background:rgba(255,255,255,.12);color:#fff;
+    width:32px;height:32px;border-radius:50%;cursor:pointer;
+    font-size:1rem;flex-shrink:0;transition:.2s;
+  }
+  .modal-x:hover{background:rgba(255,255,255,.25)}
+  .modal-frame{flex:1;width:100%;border:0;background:#242a36;display:block}
+  .modal.video .modal-frame{aspect-ratio:16/9;height:auto;background:#000}
 </style>
 </head>
 <body>
@@ -434,7 +463,7 @@
             <div class="case-grid">
               <div class="cblock"><h4>The problem</h4><p>Apple enterprise IT admins are a tight-knit, technically demanding community. They don't trust vendor marketing — they trust peers and practitioners. Entering this market meant earning credibility there, not just building a product for it.</p></div>
               <div class="cblock"><h4>The strategy</h4><p>I became the external voice of the B2B product line — the PM who also takes the stage. The insight was that outbound isn't just sales support; done right, it's the fastest and richest feedback loop for roadmap decisions. Real conversations with admins at MacAdmins or JNUC surface requirements no survey ever would.</p></div>
-              <div class="cblock"><h4>The execution</h4><p>Presented at MacAdmins and JNUC (Jamf Nation User Conference) — the two most influential conferences for Apple enterprise IT — creating all content and visuals independently (<a href="assets/files/JNUC2025_Managed_Desktop_Virtualization_at_Enterprise_Scale.pdf" target="_blank" rel="noopener" style="color:var(--accent);font-weight:600">JNUC 2025 slides ↗</a>). Co-hosted joint webinars with Apple, combining partner co-marketing with live technical education for enterprise IT admins. Ran customer discovery sessions and product demos that fed directly into the roadmap.</p></div>
+              <div class="cblock"><h4>The execution</h4><p>Presented at MacAdmins and JNUC (Jamf Nation User Conference) — the two most influential conferences for Apple enterprise IT — creating all content and visuals independently (<a href="assets/files/JNUC2025_Managed_Desktop_Virtualization_at_Enterprise_Scale.pdf" class="modal-link" data-title="JNUC 2025 — Managed Desktop Virtualization at Enterprise Scale (slides)" target="_blank" rel="noopener" style="color:var(--accent);font-weight:600">JNUC 2025 slides</a>). Co-hosted joint webinars with Apple, combining partner co-marketing with live technical education for enterprise IT admins. Ran customer discovery sessions and product demos that fed directly into the roadmap.</p></div>
               <div class="cblock"><h4>The result</h4><p>Became a recognized name in the MacAdmins community — returned as a speaker in 2026 with "The Mac-Native Way to Deliver Windows Apps, Powered by Parallels Desktop." Customer feedback from this outbound work directly seeded the Golden Image management and SSO scope that made the product enterprise-ready.</p></div>
             </div>
             <div class="case-results">
@@ -591,12 +620,12 @@
       <div class="item reveal">
         <div class="k">Conference speaker</div>
         <h4>JNUC — Jamf Nation User Conference</h4>
-        <p>2025: "Managed Desktop Virtualization at Enterprise Scale" — presented Parallels Desktop Enterprise Edition to enterprise IT decision-makers. All content created independently. <a href="assets/files/JNUC2025_Managed_Desktop_Virtualization_at_Enterprise_Scale.pdf" target="_blank" rel="noopener" style="color:var(--accent);font-weight:600">Slides (PDF) ↗</a></p>
+        <p>2025: "Managed Desktop Virtualization at Enterprise Scale" — presented Parallels Desktop Enterprise Edition to enterprise IT decision-makers. All content created independently. <a href="assets/files/JNUC2025_Managed_Desktop_Virtualization_at_Enterprise_Scale.pdf" class="modal-link" data-title="JNUC 2025 — Managed Desktop Virtualization at Enterprise Scale (slides)" target="_blank" rel="noopener" style="color:var(--accent);font-weight:600">Slides (PDF)</a></p>
       </div>
       <div class="item reveal">
         <div class="k">Conference speaker</div>
         <h4>MacAdmins Conference</h4>
-        <p>2026: "The Mac-Native Way to Deliver Windows Apps, Powered by Parallels Desktop." <a href="https://www.youtube.com/watch?v=EOI2B75uVEU" target="_blank" rel="noopener" style="color:var(--accent);font-weight:600">▶ Watch the session ↗</a> · <a href="https://psumac2026.sched.com/event/dbefe85adfaea2cf05ce851d8a2c7423" target="_blank" rel="noopener" style="color:var(--accent);font-weight:600">Session details ↗</a><br>2025: "Virtualization in IT and Education: Best and Latest Practices." <a href="https://psumac2025.sched.com/event/f23e3f5770e3052a12fa272926553d9e" target="_blank" rel="noopener" style="color:var(--accent);font-weight:600">Session details ↗</a></p>
+        <p>2026: "The Mac-Native Way to Deliver Windows Apps, Powered by Parallels Desktop." <a href="https://www.youtube.com/watch?v=EOI2B75uVEU" class="modal-link" data-video data-embed="https://www.youtube-nocookie.com/embed/EOI2B75uVEU?autoplay=1" data-title="MacAdmins 2026 — The Mac-Native Way to Deliver Windows Apps" target="_blank" rel="noopener" style="color:var(--accent);font-weight:600">▶ Watch the session</a> · <a href="https://psumac2026.sched.com/event/dbefe85adfaea2cf05ce851d8a2c7423" target="_blank" rel="noopener" style="color:var(--accent);font-weight:600">Session details ↗</a><br>2025: "Virtualization in IT and Education: Best and Latest Practices." <a href="https://psumac2025.sched.com/event/f23e3f5770e3052a12fa272926553d9e" target="_blank" rel="noopener" style="color:var(--accent);font-weight:600">Session details ↗</a></p>
       </div>
       <div class="item reveal">
         <div class="k">Inventor</div>
@@ -606,7 +635,7 @@
       <div class="item reveal">
         <div class="k">Webinars &amp; demos</div>
         <h4>Apple webinars &amp; MacAdmins online sessions</h4>
-        <p>Ran customer-facing webinars with Apple and online sessions for the admin community. 2025: "Modern VM Management on macOS" <a href="https://stream.lib.utah.edu/index.php?c=details&amp;id=13726" target="_blank" rel="noopener" style="color:var(--accent);font-weight:600">▶ Watch ↗</a> · Live online product demo <a href="https://www.youtube.com/watch?v=F_lKQ_jslH0" target="_blank" rel="noopener" style="color:var(--accent);font-weight:600">▶ Watch ↗</a></p>
+        <p>Ran customer-facing webinars with Apple and online sessions for the admin community. 2025: "Modern VM Management on macOS" <a href="https://stream.lib.utah.edu/index.php?c=details&amp;id=13726" target="_blank" rel="noopener" style="color:var(--accent);font-weight:600">▶ Watch ↗</a> · Live online product demo <a href="https://www.youtube.com/watch?v=F_lKQ_jslH0" class="modal-link" data-video data-embed="https://www.youtube-nocookie.com/embed/F_lKQ_jslH0?autoplay=1" data-title="Live online product demo — Parallels Desktop" target="_blank" rel="noopener" style="color:var(--accent);font-weight:600">▶ Watch</a></p>
       </div>
     </div>
     <div class="stack reveal" style="margin-top:34px">
@@ -622,7 +651,7 @@
     <div class="cta-row">
       <a class="btn btn-primary" href="mailto:lkulakova.pm@fastmail.com">Email me →</a>
       <a class="btn btn-ghost" href="https://linkedin.com/in/lkulakova" target="_blank" rel="noopener">LinkedIn</a>
-      <a class="btn btn-ghost" href="assets/files/LKulakova_resume.pdf">Résumé (PDF)</a>
+      <a class="btn btn-ghost modal-link" href="assets/files/LKulakova_resume.pdf" data-title="Résumé — Luba Kulakova" target="_blank" rel="noopener">Résumé (PDF)</a>
     </div>
   </div>
 </section>
@@ -646,7 +675,63 @@
   </div>
 </div>
 
+<!-- MODAL (PDF / video) -->
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="Content viewer">
+  <div class="modal-box">
+    <div class="modal-bar">
+      <span class="modal-title"></span>
+      <a class="modal-ext" href="" target="_blank" rel="noopener">Open in new tab ↗</a>
+      <button class="modal-x" aria-label="Close">✕</button>
+    </div>
+    <iframe class="modal-frame" src="" title="" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+  </div>
+</div>
+
 <script>
+  // Modal for PDFs & videos
+  (function(){
+    var modal = document.getElementById('modal');
+    var frame = modal.querySelector('.modal-frame');
+    var titleEl = modal.querySelector('.modal-title');
+    var extLink = modal.querySelector('.modal-ext');
+
+    function openModal(a){
+      var href = a.getAttribute('href');
+      var embed = a.getAttribute('data-embed') || href;
+      var isVideo = a.hasAttribute('data-video');
+      var isPdf = /\.pdf($|\?)/i.test(href);
+      // Mobile browsers can't scroll PDFs inside an iframe — open in a new tab instead
+      if(isPdf && (window.innerWidth < 700 || /iPhone|iPad|Android/i.test(navigator.userAgent))){
+        window.open(href, '_blank');
+        return;
+      }
+      modal.classList.toggle('video', isVideo);
+      titleEl.textContent = a.getAttribute('data-title') || a.textContent.trim();
+      extLink.href = href;
+      frame.src = embed;
+      frame.title = titleEl.textContent;
+      modal.classList.add('on');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeModal(){
+      modal.classList.remove('on');
+      frame.src = '';           // stops video playback
+      document.body.style.overflow = '';
+    }
+
+    document.querySelectorAll('.modal-link').forEach(function(a){
+      a.addEventListener('click', function(e){
+        e.preventDefault();
+        openModal(a);
+      });
+    });
+    modal.querySelector('.modal-x').addEventListener('click', closeModal);
+    modal.addEventListener('click', function(e){ if(e.target === modal) closeModal(); });
+    document.addEventListener('keydown', function(e){
+      if(e.key === 'Escape' && modal.classList.contains('on')) closeModal();
+    });
+  })();
+
   // Lightbox with per-gallery carousel
   (function(){
     var lb = document.getElementById('lightbox');

@@ -156,8 +156,8 @@
     display:flex;align-items:center;justify-content:center;color:var(--muted);
     font-size:1.3rem;transition:.25s;
   }
-  .case.open .case-toggle{transform:rotate(45deg);border-color:var(--accent);color:var(--accent)}
-  .case-body{max-height:0;overflow:hidden;transition:max-height .45s ease}
+  .case:hover .case-toggle{border-color:var(--accent);color:var(--accent)}
+  .case-body{display:none}
   .case-inner{padding:0 30px 32px;border-top:1px solid var(--line);margin-top:-4px;padding-top:26px}
   .case-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-bottom:24px}
   @media(max-width:680px){.case-grid{grid-template-columns:1fr}}
@@ -177,8 +177,6 @@
   .case-gallery figcaption{color:var(--faint);font-size:.8rem;margin-top:8px}
   .case-shows{font-size:.9rem;color:var(--faint)}
   .case-shows b{color:var(--accent-2);font-weight:600}
-  .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
-  .tag{font-size:.78rem;color:var(--muted);border:1px solid var(--line);border-radius:99px;padding:4px 12px}
 
   /* LEADERSHIP / two-col */
   .two-col{display:grid;grid-template-columns:1.1fr .9fr;gap:50px;align-items:start}
@@ -209,10 +207,6 @@
   .speak .item h4{font-size:1.1rem;margin-bottom:8px}
   .speak .item p{color:var(--muted);font-size:.92rem}
 
-  /* STACK */
-  .stack{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
-  .stack span{background:var(--bg-soft);border:1px solid var(--line);border-radius:8px;padding:8px 14px;font-size:.88rem;color:var(--muted)}
-
   /* CONTACT */
   .contact{background:var(--bg-soft);border-top:1px solid var(--line)}
   .contact .wrap{text-align:center;padding:84px 24px}
@@ -222,6 +216,8 @@
 
   footer{padding:34px 0;border-top:1px solid var(--line);color:var(--faint);font-size:.88rem}
   footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
+  .foot-tools{width:100%;font-size:.82rem;color:var(--faint);margin-bottom:4px}
+  .foot-tools b{font-weight:600;color:var(--muted)}
 
   .reveal{opacity:0;transform:translateY(22px);transition:.7s cubic-bezier(.2,.7,.2,1)}
   .reveal.in{opacity:1;transform:none}
@@ -296,6 +292,38 @@
   .modal-x:hover{background:rgba(255,255,255,.25)}
   .modal-frame{flex:1;width:100%;border:0;background:#242a36;display:block}
   .modal.video .modal-frame{aspect-ratio:16/9;height:auto;background:#000}
+
+  /* CASE-STUDY MODAL */
+  .case-modal{
+    position:fixed;inset:0;z-index:90;display:none;
+    background:rgba(16,24,40,.55);backdrop-filter:blur(4px);
+    align-items:center;justify-content:center;padding:24px;
+  }
+  .case-modal.on{display:flex}
+  .case-modal-box{
+    width:min(920px,94vw);max-height:88vh;
+    background:var(--card);border-radius:var(--radius);
+    box-shadow:0 24px 64px rgba(0,0,0,.35);
+    display:flex;flex-direction:column;overflow:hidden;
+  }
+  .case-modal-bar{
+    display:flex;align-items:flex-start;gap:16px;
+    padding:26px 30px 18px;border-bottom:1px solid var(--line);flex-shrink:0;
+  }
+  .case-modal-bar .meta{flex:1}
+  .case-modal-bar h3{font-size:1.3rem;letter-spacing:-.01em}
+  .case-modal-x{
+    border:1px solid var(--line);background:var(--bg-soft);color:var(--muted);
+    width:36px;height:36px;border-radius:50%;cursor:pointer;
+    font-size:1rem;flex-shrink:0;transition:.2s;
+  }
+  .case-modal-x:hover{border-color:var(--accent);color:var(--accent)}
+  .case-modal-body{overflow-y:auto;padding:26px 30px 34px}
+  .case-modal-body .case-inner{padding:0;border-top:none;margin-top:0}
+  @media(max-width:680px){
+    .case-modal{padding:0}
+    .case-modal-box{width:100vw;max-height:100vh;height:100%;border-radius:0}
+  }
 </style>
 </head>
 <body>
@@ -319,7 +347,7 @@
     <div>
       <span class="eyebrow">Principal Product Manager · B2B Enterprise Software</span>
       <h1>I turn complex enterprise problems into products that Fortune 500 teams buy.</h1>
-      <p class="hero-sub">Product leader with 7+ years owning B2B enterprise software end to end: from strategy, vision, and multi-year roadmaps to the 0→1 launches that deliver them. Technical enough to earn engineers' trust, customer-facing to run discovery and demos with enterprise customers and turn their feedback into roadmap, in a community that trusts practitioners over marketing.</p>
+      <p class="hero-sub">Product leader with 7+ years owning B2B enterprise software end to end: from strategy, vision, and multi-year roadmaps to the 0→1 launches that deliver them. Technical enough to earn engineers' trust, customer-facing to run discovery and demos with enterprise customers and turn their feedback into roadmap, in <a href="#speaking" style="color:var(--accent);font-weight:600">a community that trusts practitioners over marketing</a>.</p>
       <p class="hero-loc">Vancouver, BC · Open to remote &amp; hybrid</p>
       <div class="cta-row">
         <a class="btn btn-primary" href="#contact">Let's talk →</a>
@@ -396,7 +424,7 @@
           <div class="case-inner">
             <div class="case-grid">
               <div class="cblock"><h4>The problem</h4><p>Parallels Desktop sold well to individuals and small teams, but large organizations needed centralized control, identity integration, and management at scale before they could adopt. An entire enterprise segment was out of reach.</p></div>
-              <div class="cblock"><h4>The strategy</h4><p>I defined the vision and multi-year roadmap for a dedicated Enterprise Edition, built around a new SaaS Management Portal for controlling virtual machines at scale — and a tiered packaging model designed to open upsell paths from day one.</p></div>
+              <div class="cblock"><h4>The strategy</h4><p>Defined the vision and multi-year roadmap for a dedicated Enterprise Edition, built around a new SaaS Management Portal for controlling virtual machines at scale — and a tiered packaging model designed to open upsell paths from day one.</p></div>
               <div class="cblock"><h4>The execution</h4><p>Built the Management Portal from 0→1 in under 12 months and shipped a technical preview within a 3-month window. Coordinated engineering, QA, marketing, sales, PR, order management, and support through announcement and GA. Drove enterprise discovery throughout to keep the build anchored to real constraints.</p></div>
               <div class="cblock"><h4>The result</h4><p>Secured Fortune 500 adoption within six months of GA, unlocked upsell to higher tiers, and turned a single-edition product into a tiered enterprise business.</p></div>
             </div>
@@ -411,7 +439,6 @@
               <div class="chip"><b>+25%</b> addressable market</div>
               <div class="chip"><b>+15%</b> returning-customer revenue</div>
             </div>
-            <div class="tags"><span class="tag">Product strategy</span><span class="tag">0→1</span><span class="tag">Enterprise GTM</span><span class="tag">Pricing &amp; packaging</span></div>
           </div>
         </div>
       </div>
@@ -422,7 +449,7 @@
           <div class="meta">
             <span class="case-kicker">Technical depth · Enterprise integrations</span>
             <h3>Making Parallels enterprise-deployable: SSO, MDM &amp; Golden Image deployment</h3>
-            <p class="blurb">Enterprise IT won't adopt software that doesn't fit their stack. I led the integrations that removed every blocker — identity providers, device management, and at-scale VM deployment.</p>
+            <p class="blurb">Enterprise IT won't adopt software that doesn't fit their stack. Led the integrations that removed every blocker — identity providers, device management, and at-scale VM deployment.</p>
           </div>
           <div class="case-toggle">+</div>
         </div>
@@ -430,7 +457,7 @@
           <div class="case-inner">
             <div class="case-grid">
               <div class="cblock"><h4>The problem</h4><p>Enterprise IT admins manage thousands of devices through established systems — Jamf, Microsoft Intune, Entra ID, Apple Business Manager. Before these integrations existed, Parallels was locked out of organizations that required them as a condition of purchase. Great product, wrong ecosystem fit.</p></div>
-              <div class="cblock"><h4>The strategy</h4><p>I prioritized the integrations that directly unblock enterprise deals, then went further — partnering with Apple, Jamf, and Microsoft at a roadmap level rather than just consuming their APIs. The goal: make Parallels a native citizen in the enterprise IT ecosystem, not something admins have to work around.</p></div>
+              <div class="cblock"><h4>The strategy</h4><p>Prioritized the integrations that directly unblock enterprise deals, then went further — partnering with Apple, Jamf, and Microsoft at a roadmap level rather than just consuming their APIs. The goal: make Parallels a native citizen in the enterprise IT ecosystem, not something admins have to work around.</p></div>
               <div class="cblock"><h4>The execution</h4><p>Designed and led SSO integration across a wide range of identity providers (SAML, SCIM). Defined and shipped Golden Image deployment — enabling IT admins to deploy pre-configured Windows VMs at scale — and Multiple Golden Image management for orgs with different user groups. Authored technical customer guides (including Single App Mode with Intune enrollment and Sysprep). Trained sales, support, marketing, and partner engineers on each integration; provided hands-on support to enterprise customers during their own deployments.</p></div>
               <div class="cblock"><h4>The result</h4><p>Removed the integration blockers standing between the product and enterprise procurement. Became the company's technical SME on enterprise IT integrations — the primary resource for sales escalations and customer deals. Partnerships with Apple, Jamf, and Microsoft extended to joint roadmap influence, not just API consumption.</p></div>
             </div>
@@ -443,7 +470,6 @@
               <div class="chip"><b>Golden Image</b> deployment at scale</div>
               <div class="chip">Technical guides <b>adopted by sales &amp; GTM</b></div>
             </div>
-            <div class="tags"><span class="tag">MDM / EMM</span><span class="tag">Identity &amp; SSO</span><span class="tag">Mac &amp; Windows admin</span><span class="tag">Partner strategy</span></div>
           </div>
         </div>
       </div>
@@ -454,7 +480,7 @@
           <div class="meta">
             <span class="case-kicker">Outbound · Community · Customer discovery</span>
             <h3>Earning trust in the admin community: conferences, Apple webinars &amp; the feedback loop that shapes the roadmap</h3>
-            <p class="blurb">Enterprise software doesn't sell through marketing copy. It sells through credibility. I became the public technical face of the B2B product line — and brought what I learned back into the product.</p>
+            <p class="blurb">Enterprise software doesn't sell through marketing copy. It sells through credibility. Became the public technical face of the B2B product line — and brought what was learned back into the product.</p>
           </div>
           <div class="case-toggle">+</div>
         </div>
@@ -462,7 +488,7 @@
           <div class="case-inner">
             <div class="case-grid">
               <div class="cblock"><h4>The problem</h4><p>Apple enterprise IT admins are a tight-knit, technically demanding community. They don't trust vendor marketing — they trust peers and practitioners. Entering this market meant earning credibility there, not just building a product for it.</p></div>
-              <div class="cblock"><h4>The strategy</h4><p>I became the external voice of the B2B product line — the PM who also takes the stage. The insight was that outbound isn't just sales support; done right, it's the fastest and richest feedback loop for roadmap decisions. Real conversations with admins at MacAdmins or JNUC surface requirements no survey ever would.</p></div>
+              <div class="cblock"><h4>The strategy</h4><p>Became the external voice of the B2B product line — the PM who also takes the stage. The insight was that outbound isn't just sales support; done right, it's the fastest and richest feedback loop for roadmap decisions. Real conversations with admins at MacAdmins or JNUC surface requirements no survey ever would.</p></div>
               <div class="cblock"><h4>The execution</h4><p>Presented at MacAdmins and JNUC (Jamf Nation User Conference) — the two most influential conferences for Apple enterprise IT — creating all content and visuals independently (<a href="assets/files/JNUC2025_Managed_Desktop_Virtualization_at_Enterprise_Scale.pdf" class="modal-link" data-title="JNUC 2025 — Managed Desktop Virtualization at Enterprise Scale (slides)" target="_blank" rel="noopener" style="color:var(--accent);font-weight:600">JNUC 2025 slides</a>). Co-hosted joint webinars with Apple, combining partner co-marketing with live technical education for enterprise IT admins. Ran customer discovery sessions and product demos that fed directly into the roadmap.</p></div>
               <div class="cblock"><h4>The result</h4><p>Became a recognized name in the MacAdmins community — returned as a speaker in 2026 with "The Mac-Native Way to Deliver Windows Apps, Powered by Parallels Desktop." Customer feedback from this outbound work directly seeded the Golden Image management and SSO scope that made the product enterprise-ready.</p></div>
             </div>
@@ -472,7 +498,6 @@
               <div class="chip">Joint <b>Apple</b> webinars</div>
               <div class="chip">Community feedback <b>seeded the enterprise roadmap</b></div>
             </div>
-            <div class="tags"><span class="tag">Conference speaking</span><span class="tag">Customer discovery</span><span class="tag">GTM enablement</span><span class="tag">Partner co-marketing</span><span class="tag">Community</span></div>
           </div>
         </div>
       </div>
@@ -491,7 +516,7 @@
           <div class="case-inner">
             <div class="case-grid">
               <div class="cblock"><h4>The problem</h4><p>Parallels Toolbox had over a million users but a negative NPS (as low as −7) and flat engagement — a sign of stability and usability debt eroding a large base.</p></div>
-              <div class="cblock"><h4>The strategy</h4><p>I rebuilt the measurement foundation first: migrated analytics to Amplitude, separated paid users from bundled free users in the NPS survey for cleaner signal, then prioritized the roadmap directly from in-depth NPS analysis.</p></div>
+              <div class="cblock"><h4>The strategy</h4><p>Rebuilt the measurement foundation first: migrated analytics to Amplitude, separated paid users from bundled free users in the NPS survey for cleaner signal, then prioritized the roadmap directly from in-depth NPS analysis.</p></div>
               <div class="cblock"><h4>The execution</h4><p>Shipped targeted UX and performance improvements, a redesigned Windows experience, A/B-tested freemium flows on macOS, and a new taskbar agent mode to raise prominence. Validated each release against the metrics and adjusted.</p></div>
               <div class="cblock"><h4>The result</h4><p>NPS climbed from negative into the 30s; monthly users seeing the Toolbox agent grew 3×; MAU rose 20%.</p></div>
             </div>
@@ -501,7 +526,6 @@
               <div class="chip"><b>3×</b> agent visibility</div>
               <div class="chip"><b>1M+</b> users owned</div>
             </div>
-            <div class="tags"><span class="tag">Analytics (Amplitude)</span><span class="tag">NPS / VoC</span><span class="tag">A/B testing</span><span class="tag">Growth</span></div>
           </div>
         </div>
       </div>
@@ -520,7 +544,7 @@
           <div class="case-inner">
             <div class="case-grid">
               <div class="cblock"><h4>The problem</h4><p>Parallels' consumer products each handled installation differently, creating friction, failed installs, and duplicated effort across product teams.</p></div>
-              <div class="cblock"><h4>The strategy</h4><p>I researched internal and external installer solutions, gathered requirements across Parallels and Corel product teams, and defined a strategy for one shared Universal Installer — plus a self-service build system so teams could generate builds independently.</p></div>
+              <div class="cblock"><h4>The strategy</h4><p>Researched internal and external installer solutions, gathered requirements across Parallels and Corel product teams, and defined a strategy for one shared Universal Installer — plus a self-service build system so teams could generate builds independently.</p></div>
               <div class="cblock"><h4>The execution</h4><p>Launched the installer 0→1, set up the team's interaction model, release process, and cross-team communication from scratch, and led migration of Toolbox onto it. Presented the self-service build proposal to management and got it approved and funded.</p></div>
               <div class="cblock"><h4>The result</h4><p>98% install success rate and 200,000 monthly installations across the consumer portfolio, on a foundation other teams could build on without bottlenecks.</p></div>
             </div>
@@ -529,7 +553,6 @@
               <div class="chip"><b>200K</b> monthly installs</div>
               <div class="chip">New <b>operating model</b> from scratch</div>
             </div>
-            <div class="tags"><span class="tag">0→1</span><span class="tag">Cross-team process</span><span class="tag">Platform thinking</span><span class="tag">Stakeholder buy-in</span></div>
           </div>
         </div>
       </div>
@@ -549,7 +572,7 @@
     <div class="two-col">
       <ul class="lead-list reveal">
         <li>
-          <h4>Business &amp; line ownership</h4>
+          <h4>Business &amp; product direction ownership</h4>
           <p>Owns the full B2B product line's P&amp;L thinking — editions, pricing, packaging, and upsell — accountable for turning product decisions into revenue, not just releases.</p>
         </li>
         <li>
@@ -569,7 +592,7 @@
         <h4>Career progression</h4>
         <div class="row"><span>Principal Product Manager</span><span>Parallels · 2026–now</span></div>
         <div class="row"><span>Senior Product Manager</span><span>Parallels · 2024–26</span></div>
-        <div class="row"><span>Product Manager</span><span>Alludo / Parallels · 2019–24</span></div>
+        <div class="row"><span>Product Manager</span><span>Parallels · 2019–24</span></div>
         <div class="row"><span>Intellectual Property Manager</span><span>Parallels · 2016–19</span></div>
         <div class="row"><span>Education</span><span>M.Sc. Information Security</span></div>
         <div class="row"><span>Languages</span><span>English · French · Russian</span></div>
@@ -638,9 +661,6 @@
         <p>Ran customer-facing webinars with Apple and online sessions for the admin community. 2025: "Modern VM Management on macOS" <a href="https://stream.lib.utah.edu/index.php?c=details&amp;id=13726" target="_blank" rel="noopener" style="color:var(--accent);font-weight:600">▶ Watch ↗</a> · Live online product demo <a href="https://www.youtube.com/watch?v=F_lKQ_jslH0" class="modal-link" data-video data-embed="https://www.youtube-nocookie.com/embed/F_lKQ_jslH0?autoplay=1" data-title="Live online product demo — Parallels Desktop" target="_blank" rel="noopener" style="color:var(--accent);font-weight:600">▶ Watch</a></p>
       </div>
     </div>
-    <div class="stack reveal" style="margin-top:34px">
-      <span>Amplitude</span><span>Tableau</span><span>Kibana</span><span>Jamf</span><span>Microsoft Intune</span><span>Entra ID</span><span>SSO / SAML</span><span>SCIM</span><span>Jira</span><span>Confluence</span>
-    </div>
   </div>
 </section>
 
@@ -658,6 +678,7 @@
 
 <footer>
   <div class="wrap">
+    <span class="foot-tools"><b>Tools I work in:</b> Amplitude · Tableau · Kibana · Jamf · Microsoft Intune · Entra ID · SSO / SAML · SCIM · Jira · Confluence</span>
     <span>© 2026 Luba Kulakova · Vancouver, BC</span>
     <span>Product Leader · B2B Enterprise Software</span>
   </div>
@@ -684,6 +705,20 @@
       <button class="modal-x" aria-label="Close">✕</button>
     </div>
     <iframe class="modal-frame" src="" title="" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+  </div>
+</div>
+
+<!-- CASE-STUDY MODAL -->
+<div class="case-modal" id="case-modal" role="dialog" aria-modal="true" aria-label="Case study">
+  <div class="case-modal-box">
+    <div class="case-modal-bar">
+      <div class="meta">
+        <span class="case-kicker"></span>
+        <h3></h3>
+      </div>
+      <button class="case-modal-x" aria-label="Close">✕</button>
+    </div>
+    <div class="case-modal-body"></div>
   </div>
 </div>
 
@@ -716,7 +751,8 @@
     function closeModal(){
       modal.classList.remove('on');
       frame.src = '';           // stops video playback
-      document.body.style.overflow = '';
+      var caseOpen = document.querySelector('.case-modal.on');
+      document.body.style.overflow = caseOpen ? 'hidden' : '';
     }
 
     document.querySelectorAll('.modal-link').forEach(function(a){
@@ -761,7 +797,8 @@
     }
     function close(){
       lb.classList.remove('on');
-      document.body.style.overflow = '';
+      var caseOpen = document.querySelector('.case-modal.on');
+      document.body.style.overflow = caseOpen ? 'hidden' : '';
       lbImg.src = '';
     }
 
@@ -797,26 +834,46 @@
     }, {passive:true});
   })();
 
-  // Accordion
-  document.querySelectorAll('.case-head').forEach(function(h){
-    h.addEventListener('click', function(){
-      var c = h.parentElement;
-      var body = c.querySelector('.case-body');
-      var open = c.classList.contains('open');
-      if(open){
-        c.classList.remove('open');
-        body.style.maxHeight = body.scrollHeight + 'px';
-        requestAnimationFrame(function(){ body.style.maxHeight = '0px'; });
-      } else {
-        c.classList.add('open');
-        body.style.maxHeight = body.scrollHeight + 'px';
-        body.addEventListener('transitionend', function h(e){
-          if(e.propertyName==='max-height' && c.classList.contains('open')){ body.style.maxHeight = 'none'; }
-          body.removeEventListener('transitionend', h);
-        });
-      }
+  // Case-study modal
+  (function(){
+    var cm = document.getElementById('case-modal');
+    var cmBody = cm.querySelector('.case-modal-body');
+    var cmKicker = cm.querySelector('.case-kicker');
+    var cmTitle = cm.querySelector('.case-modal-bar h3');
+    var home = null; // where the content returns on close
+
+    function openCase(c){
+      var inner = c.querySelector('.case-inner');
+      if(!inner) return;
+      home = inner.parentElement;
+      cmKicker.textContent = c.querySelector('.case-kicker').textContent;
+      cmTitle.textContent = c.querySelector('.case-head h3').textContent;
+      cmBody.appendChild(inner); // move (not clone) so image/PDF links keep their handlers
+      cm.classList.add('on');
+      cmBody.scrollTop = 0;
+      document.body.style.overflow = 'hidden';
+    }
+    function closeCase(){
+      var inner = cmBody.querySelector('.case-inner');
+      if(home && inner){ home.appendChild(inner); }
+      home = null;
+      cm.classList.remove('on');
+      document.body.style.overflow = '';
+    }
+
+    document.querySelectorAll('.case-head').forEach(function(h){
+      h.addEventListener('click', function(){ openCase(h.parentElement); });
     });
-  });
+    cm.querySelector('.case-modal-x').addEventListener('click', closeCase);
+    cm.addEventListener('click', function(e){ if(e.target === cm) closeCase(); });
+    document.addEventListener('keydown', function(e){
+      if(e.key !== 'Escape' || !cm.classList.contains('on')) return;
+      // If the lightbox or PDF/video modal is open on top, let it handle Escape
+      if(document.getElementById('lightbox').classList.contains('on')) return;
+      if(document.getElementById('modal').classList.contains('on')) return;
+      closeCase();
+    });
+  })();
   // Reveal on scroll
   var io = new IntersectionObserver(function(entries){
     entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });

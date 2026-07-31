@@ -257,6 +257,12 @@
     font-size:1.4rem;display:flex;align-items:center;justify-content:center;transition:.2s;
   }
   .lb-close:hover{background:rgba(255,255,255,.25)}
+  .lb-dl{
+    position:fixed;top:22px;right:82px;width:44px;height:44px;border-radius:50%;
+    cursor:pointer;background:rgba(255,255,255,.12);color:#fff;
+    font-size:1.3rem;display:flex;align-items:center;justify-content:center;transition:.2s;
+  }
+  .lb-dl:hover{background:rgba(255,255,255,.25)}
   .lightbox.single .lb-prev,.lightbox.single .lb-next,.lightbox.single .lb-counter{display:none}
   @media(max-width:900px){
     .lb-prev{left:8px}
@@ -284,6 +290,9 @@
   .modal-title{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .modal-ext{color:#9db4e8;font-weight:600;flex-shrink:0}
   .modal-ext:hover{color:#fff}
+  .modal-dl{color:#9db4e8;font-weight:600;flex-shrink:0}
+  .modal-dl:hover{color:#fff}
+  .modal.video .modal-dl{display:none} /* embedded videos can't be downloaded */
   .modal-x{
     border:none;background:rgba(255,255,255,.12);color:#fff;
     width:32px;height:32px;border-radius:50%;cursor:pointer;
@@ -318,6 +327,13 @@
     font-size:1rem;flex-shrink:0;transition:.2s;
   }
   .case-modal-x:hover{border-color:var(--accent);color:var(--accent)}
+  .case-modal-arrow{
+    border:1px solid var(--line);background:var(--bg-soft);color:var(--muted);
+    width:36px;height:36px;border-radius:50%;cursor:pointer;
+    font-size:1.25rem;line-height:1;flex-shrink:0;transition:.2s;
+  }
+  .case-modal-arrow:hover{border-color:var(--accent);color:var(--accent)}
+  .case-modal-count{color:var(--faint);font-size:.82rem;letter-spacing:.06em;flex-shrink:0;align-self:center}
   .case-modal-body{overflow-y:auto;padding:26px 30px 34px}
   .case-modal-body .case-inner{padding:0;border-top:none;margin-top:0}
   @media(max-width:680px){
@@ -347,7 +363,7 @@
     <div>
       <span class="eyebrow">Principal Product Manager · B2B Enterprise Software</span>
       <h1>I turn complex enterprise problems into products that Fortune 500 teams buy.</h1>
-      <p class="hero-sub">Product leader with 7+ years owning B2B enterprise software end to end: from strategy, vision, and multi-year roadmaps to the 0→1 launches that deliver them. Technical enough to earn engineers' trust, customer-facing to run discovery and demos with enterprise customers and turn their feedback into roadmap, in <a href="#speaking" style="color:var(--accent);font-weight:600">a community that trusts practitioners over marketing</a>.</p>
+      <p class="hero-sub">Product leader with 7+ years owning B2B enterprise software end to end: from strategy, vision, and multi-year roadmaps to the 0→1 launches that deliver them. Technical enough to earn engineers' trust, customer-facing to run discovery and demos with enterprise customers and turn their feedback into roadmap, in a <a href="#speaking" style="color:var(--accent);font-weight:600">community</a> that trusts practitioners over marketing.</p>
       <p class="hero-loc">Vancouver, BC · Open to remote &amp; hybrid</p>
       <div class="cta-row">
         <a class="btn btn-primary" href="#contact">Let's talk →</a>
@@ -671,7 +687,7 @@
     <div class="cta-row">
       <a class="btn btn-primary" href="mailto:lkulakova.pm@fastmail.com">Email me →</a>
       <a class="btn btn-ghost" href="https://linkedin.com/in/lkulakova" target="_blank" rel="noopener">LinkedIn</a>
-      <a class="btn btn-ghost modal-link" href="assets/files/LKulakova_resume.pdf" data-title="Résumé — Luba Kulakova" target="_blank" rel="noopener">Résumé (PDF)</a>
+      <a class="btn btn-ghost modal-link" href="assets/files/LKulakova_resume_Jul_2026.pdf" data-title="Résumé — Luba Kulakova" target="_blank" rel="noopener">Résumé (PDF)</a>
     </div>
   </div>
 </section>
@@ -687,6 +703,7 @@
 <!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
   <button class="lb-close" aria-label="Close">✕</button>
+  <a class="lb-dl" href="" download aria-label="Download image" title="Download image">↓</a>
   <div class="lb-stage">
     <button class="lb-btn lb-prev" aria-label="Previous image">‹</button>
     <img src="" alt="">
@@ -701,6 +718,7 @@
   <div class="modal-box">
     <div class="modal-bar">
       <span class="modal-title"></span>
+      <a class="modal-dl" href="" download>Download ↓</a>
       <a class="modal-ext" href="" target="_blank" rel="noopener">Open in new tab ↗</a>
       <button class="modal-x" aria-label="Close">✕</button>
     </div>
@@ -716,6 +734,9 @@
         <span class="case-kicker"></span>
         <h3></h3>
       </div>
+      <span class="case-modal-count"></span>
+      <button class="case-modal-arrow" data-dir="-1" aria-label="Previous case study">‹</button>
+      <button class="case-modal-arrow" data-dir="1" aria-label="Next case study">›</button>
       <button class="case-modal-x" aria-label="Close">✕</button>
     </div>
     <div class="case-modal-body"></div>
@@ -729,6 +750,7 @@
     var frame = modal.querySelector('.modal-frame');
     var titleEl = modal.querySelector('.modal-title');
     var extLink = modal.querySelector('.modal-ext');
+    var dlLink = modal.querySelector('.modal-dl');
 
     function openModal(a){
       var href = a.getAttribute('href');
@@ -743,6 +765,7 @@
       modal.classList.toggle('video', isVideo);
       titleEl.textContent = a.getAttribute('data-title') || a.textContent.trim();
       extLink.href = href;
+      dlLink.href = href;
       frame.src = embed;
       frame.title = titleEl.textContent;
       modal.classList.add('on');
@@ -774,6 +797,7 @@
     var lbImg = lb.querySelector('.lb-stage img');
     var lbCap = lb.querySelector('.lb-caption');
     var lbCnt = lb.querySelector('.lb-counter');
+    var lbDl = lb.querySelector('.lb-dl');
     var group = [], idx = 0;
 
     function show(i){
@@ -783,6 +807,7 @@
       lbImg.alt = item.alt;
       lbCap.textContent = item.caption;
       lbCnt.textContent = group.length > 1 ? (idx+1) + ' / ' + group.length : '';
+      lbDl.href = item.src;
       lb.classList.toggle('single', group.length < 2);
     }
     function open(links, i){
@@ -840,38 +865,58 @@
     var cmBody = cm.querySelector('.case-modal-body');
     var cmKicker = cm.querySelector('.case-kicker');
     var cmTitle = cm.querySelector('.case-modal-bar h3');
-    var home = null; // where the content returns on close
+    var cmCount = cm.querySelector('.case-modal-count');
+    var cases = Array.prototype.slice.call(document.querySelectorAll('#work .case'));
+    var home = null;   // where the content returns on close
+    var current = -1;  // index of the open case
 
+    function putBack(){
+      var inner = cmBody.querySelector('.case-inner');
+      if(home && inner){ home.appendChild(inner); }
+      home = null;
+    }
     function openCase(c){
       var inner = c.querySelector('.case-inner');
       if(!inner) return;
+      putBack(); // return any previously shown case first
+      current = cases.indexOf(c);
       home = inner.parentElement;
       cmKicker.textContent = c.querySelector('.case-kicker').textContent;
       cmTitle.textContent = c.querySelector('.case-head h3').textContent;
+      cmCount.textContent = (current + 1) + ' / ' + cases.length;
       cmBody.appendChild(inner); // move (not clone) so image/PDF links keep their handlers
       cm.classList.add('on');
       cmBody.scrollTop = 0;
       document.body.style.overflow = 'hidden';
     }
+    function step(d){
+      if(current < 0) return;
+      openCase(cases[(current + d + cases.length) % cases.length]);
+    }
     function closeCase(){
-      var inner = cmBody.querySelector('.case-inner');
-      if(home && inner){ home.appendChild(inner); }
-      home = null;
+      putBack();
+      current = -1;
       cm.classList.remove('on');
       document.body.style.overflow = '';
+    }
+    function overlayOnTop(){
+      return document.getElementById('lightbox').classList.contains('on') ||
+             document.getElementById('modal').classList.contains('on');
     }
 
     document.querySelectorAll('.case-head').forEach(function(h){
       h.addEventListener('click', function(){ openCase(h.parentElement); });
     });
+    cm.querySelectorAll('.case-modal-arrow').forEach(function(b){
+      b.addEventListener('click', function(){ step(parseInt(b.getAttribute('data-dir'), 10)); });
+    });
     cm.querySelector('.case-modal-x').addEventListener('click', closeCase);
     cm.addEventListener('click', function(e){ if(e.target === cm) closeCase(); });
     document.addEventListener('keydown', function(e){
-      if(e.key !== 'Escape' || !cm.classList.contains('on')) return;
-      // If the lightbox or PDF/video modal is open on top, let it handle Escape
-      if(document.getElementById('lightbox').classList.contains('on')) return;
-      if(document.getElementById('modal').classList.contains('on')) return;
-      closeCase();
+      if(!cm.classList.contains('on') || overlayOnTop()) return; // lightbox/PDF handles its own keys
+      if(e.key === 'Escape') closeCase();
+      else if(e.key === 'ArrowLeft') step(-1);
+      else if(e.key === 'ArrowRight') step(1);
     });
   })();
   // Reveal on scroll

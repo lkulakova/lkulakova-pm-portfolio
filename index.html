@@ -342,6 +342,15 @@
     .case-modal-box{width:100vw;max-height:100vh;height:100%;border-radius:0}
   }
 </style>
+<!-- Amplitude Analytics -->
+<script src="https://cdn.amplitude.com/libs/analytics-browser-2.11.1-min.js.gz"></script>
+<script src="https://cdn.amplitude.com/libs/plugin-session-replay-browser-1.7.0-min.js.gz"></script>
+<script>
+  window.amplitude.add(window.sessionReplay.plugin({sampleRate: 1}));
+  window.amplitude.init('c101723620dfec29d54f69ac31647e15', {
+    autocapture: { pageViews: true, sessions: true }
+  });
+</script>
 </head>
 <body>
 
@@ -920,6 +929,90 @@
     entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
   },{threshold:.12});
   document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+</script>
+
+<!-- Amplitude event tracking -->
+<script>
+(function(){
+  function track(name, props){ if(window.amplitude) window.amplitude.track(name, props); }
+
+  document.addEventListener('click', function(e){
+    var toggle = e.target.closest('.case-toggle');
+    if (toggle) {
+      var caseEl = toggle.closest('.case');
+      var h3 = caseEl && caseEl.querySelector('h3');
+      var kicker = caseEl && caseEl.querySelector('.case-kicker');
+      track('Case Study Expanded', {
+        case_title: h3 ? h3.textContent.trim() : undefined,
+        case_category: kicker ? kicker.textContent.trim() : undefined
+      });
+      return;
+    }
+
+    var a = e.target.closest('a');
+    if (!a) return;
+    var href = a.getAttribute('href') || '';
+
+    if (a.matches('.navlinks a, .nav-cta')) {
+      track('Nav Link Clicked', { label: a.textContent.trim(), target: href });
+      return;
+    }
+
+    if (a.closest('.hero .cta-row')) {
+      track('CTA Clicked', { label: a.textContent.trim(), target: href });
+      return;
+    }
+
+    if (href.indexOf('mailto:') === 0) {
+      track('Email Clicked', { email: href.replace('mailto:', '') });
+      return;
+    }
+
+    if (href.indexOf('linkedin.com') !== -1) {
+      track('LinkedIn Clicked', { url: href });
+      return;
+    }
+
+    if (a.matches('.modal-link') && href.toLowerCase().indexOf('resume') !== -1) {
+      track('Resume Downloaded', { file: href });
+      return;
+    }
+
+    if (a.matches('.modal-link')) {
+      track('Speaking Content Viewed', {
+        title: a.getAttribute('data-title') || a.textContent.trim(),
+        type: a.hasAttribute('data-video') ? 'video' : 'pdf',
+        url: href
+      });
+      return;
+    }
+
+    if (a.matches('.lb-link')) {
+      var fig = a.closest('figure');
+      var caption = fig && fig.querySelector('figcaption');
+      track('Case Study Gallery Image Viewed', {
+        image: href,
+        caption: caption ? caption.textContent.trim() : undefined
+      });
+      return;
+    }
+  });
+
+  // Scroll depth
+  var fired = { 25: false, 50: false, 75: false, 100: false };
+  window.addEventListener('scroll', function(){
+    var scrollTop = window.scrollY || document.documentElement.scrollTop;
+    var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    if (docHeight <= 0) return;
+    var pct = (scrollTop / docHeight) * 100;
+    [25, 50, 75, 100].forEach(function(mark){
+      if (!fired[mark] && pct >= mark) {
+        fired[mark] = true;
+        track('Scroll Depth', { percent: mark });
+      }
+    });
+  }, { passive: true });
+})();
 </script>
 
 </body>

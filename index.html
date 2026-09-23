@@ -208,6 +208,41 @@
   .speak .item h4{font-size:1.1rem;margin-bottom:8px}
   .speak .item p{color:var(--muted);font-size:.92rem}
 
+  /* MATERIALS carousel */
+  .mat-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:28px}
+  .mat-head .sec-head{margin-bottom:0}
+  .mat-copy{
+    display:inline-flex;align-items:center;gap:8px;white-space:nowrap;
+    border:1px solid var(--line);background:var(--card);color:var(--muted);
+    padding:10px 18px;border-radius:99px;font-size:.86rem;font-weight:600;
+    cursor:pointer;transition:.2s;flex-shrink:0;font-family:inherit;
+  }
+  .mat-copy:hover{border-color:var(--accent);color:var(--accent)}
+  .mat-copy.copied{border-color:var(--accent-2);color:var(--accent-2)}
+  .mat-nav{display:flex;gap:10px;justify-content:flex-end;margin-bottom:14px}
+  .mat-nav button{
+    border:1px solid var(--line);background:var(--card);color:var(--muted);
+    width:38px;height:38px;border-radius:50%;cursor:pointer;font-size:1.2rem;
+    line-height:1;transition:.2s;
+  }
+  .mat-nav button:hover{border-color:var(--accent);color:var(--accent)}
+  .mat-track{
+    display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;
+    padding:4px 4px 16px;margin:0 -4px;scrollbar-width:thin;
+  }
+  .mat-track::-webkit-scrollbar{height:6px}
+  .mat-track::-webkit-scrollbar-thumb{background:var(--line);border-radius:99px}
+  .mat-card{
+    scroll-snap-align:start;flex:0 0 300px;
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:24px;box-shadow:var(--shadow-sm);display:flex;flex-direction:column;
+  }
+  .mat-card .k{color:var(--accent-2);font-size:.76rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;margin-bottom:10px}
+  .mat-card h4{font-size:1.02rem;margin-bottom:8px;letter-spacing:-.01em;line-height:1.32}
+  .mat-card p{color:var(--muted);font-size:.88rem;flex:1;margin-bottom:16px}
+  .mat-card .links{display:flex;flex-wrap:wrap;gap:8px 14px;font-size:.86rem;font-weight:600}
+  @media(max-width:540px){.mat-card{flex-basis:82vw}}
+
   /* CONTACT */
   .contact{background:var(--bg-soft);border-top:1px solid var(--line)}
   .contact .wrap{text-align:center;padding:84px 24px}
@@ -361,6 +396,7 @@
       <a href="#strengths">Strengths</a>
       <a href="#work">Case Studies</a>
       <a href="#speaking">Speaking</a>
+      <a href="#materials">Materials</a>
       <a href="#leadership">Leadership</a>
       <a href="#contact">Contact</a>
     </div>
@@ -618,6 +654,91 @@
         <div class="k">Webinars &amp; demos</div>
         <h4>Apple webinars &amp; MacAdmins online sessions</h4>
         <p>Ran customer-facing webinars with Apple and online sessions for the admin community. 2025: "Modern VM Management on macOS" <a href="https://stream.lib.utah.edu/index.php?c=details&amp;id=13726" target="_blank" rel="noopener" style="color:var(--accent);font-weight:600">▶ Watch ↗</a> · Live online product demo <a href="https://www.youtube.com/watch?v=F_lKQ_jslH0" class="modal-link" data-video data-embed="https://www.youtube-nocookie.com/embed/F_lKQ_jslH0?autoplay=1" data-title="Live online product demo — Parallels Desktop" target="_blank" rel="noopener" style="color:var(--accent);font-weight:600">▶ Watch</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MATERIALS -->
+<section id="materials">
+  <div class="wrap">
+    <div class="mat-head reveal">
+      <div class="sec-head">
+        <span class="sec-tag">Supporting materials</span>
+        <h2>Presentations &amp; sessions</h2>
+        <p>Slides and recordings from talks delivered internally and externally. This section has its own link to share directly.</p>
+      </div>
+      <button class="mat-copy" id="mat-copy-link" type="button">🔗 Copy link to this section</button>
+    </div>
+    <div class="mat-nav">
+      <button class="mat-prev" type="button" aria-label="Scroll left">‹</button>
+      <button class="mat-next" type="button" aria-label="Scroll right">›</button>
+    </div>
+    <div class="mat-track" id="mat-track">
+      <div class="mat-card reveal">
+        <div class="k">External · JNUC 2026 · Product launch</div>
+        <h4>The Mac-Native Way to Deliver Windows Apps</h4>
+        <p>Short-format session introducing the new app-delivery capability to the Apple admin community.</p>
+        <div class="links">
+          <a href="assets/files/JNUC2026_Mac-Native_Way_to_Deliver_Windows_Apps.pdf" class="modal-link" data-title="JNUC 2026 — The Mac-Native Way to Deliver Windows Apps (slides)" target="_blank" rel="noopener" style="color:var(--accent)">Slides (PDF)</a>
+        </div>
+      </div>
+      <div class="mat-card reveal">
+        <div class="k">External · MacAdmins 2026 · Deep dive</div>
+        <h4>The Mac-Native Way to Deliver Windows Apps</h4>
+        <p>Full-length version of the same launch, with implementation detail for admins at the largest Apple-in-education/enterprise conference.</p>
+        <div class="links">
+          <a href="https://www.youtube.com/watch?v=EOI2B75uVEU" class="modal-link" data-video data-embed="https://www.youtube-nocookie.com/embed/EOI2B75uVEU?autoplay=1" data-title="MacAdmins 2026 — The Mac-Native Way to Deliver Windows Apps" target="_blank" rel="noopener" style="color:var(--accent)">▶ Watch session</a>
+          <a href="assets/files/MacAdmins2026_Mac-Native_Way_to_Deliver_Windows_Apps.pdf" class="modal-link" data-title="MacAdmins 2026 — The Mac-Native Way to Deliver Windows Apps (slides)" target="_blank" rel="noopener" style="color:var(--accent)">Slides (PDF)</a>
+        </div>
+      </div>
+      <div class="mat-card reveal">
+        <div class="k">External · JNUC 2025</div>
+        <h4>Managed Desktop Virtualization at Enterprise Scale</h4>
+        <p>Presented Parallels Desktop Enterprise Edition to enterprise IT decision-makers. Content created independently.</p>
+        <div class="links">
+          <a href="assets/files/JNUC2025_Managed_Desktop_Virtualization_at_Enterprise_Scale.pdf" class="modal-link" data-title="JNUC 2025 — Managed Desktop Virtualization at Enterprise Scale (slides)" target="_blank" rel="noopener" style="color:var(--accent)">Slides (PDF)</a>
+        </div>
+      </div>
+      <div class="mat-card reveal">
+        <div class="k">External · MacAdmins 2025</div>
+        <h4>Virtualization in IT and Education: Best and Latest Practices</h4>
+        <p>Session for IT admins across education and enterprise on current virtualization practice.</p>
+        <div class="links">
+          <a href="https://psumac2025.sched.com/event/f23e3f5770e3052a12fa272926553d9e" target="_blank" rel="noopener" style="color:var(--accent)">Session details ↗</a>
+        </div>
+      </div>
+      <div class="mat-card reveal">
+        <div class="k">Internal · Sales &amp; marketing enablement</div>
+        <h4>PDE 26.1 — VM Settings Controlled by Policy</h4>
+        <p>Feature training delivered to sales, SEs, support, and marketing ahead of the release, translating the capability into customer-facing value.</p>
+        <div class="links">
+          <a href="assets/files/PDE26.1_VM_Settings_Controlled_by_Policy_SalesEnablement.pdf" class="modal-link" data-title="PDE 26.1 feature training — VM settings controlled by policy (sales &amp; marketing enablement)" target="_blank" rel="noopener" style="color:var(--accent)">Slides (PDF)</a>
+        </div>
+      </div>
+      <div class="mat-card reveal">
+        <div class="k">Internal · Company-wide</div>
+        <h4>Vision and Strategy — B2B Segment</h4>
+        <p>Product vision and multi-year strategy presented to leadership and the whole company.</p>
+        <div class="links">
+          <a href="assets/files/Vision_and_Strategy_PD_B2B.pdf" class="modal-link" data-title="Vision and Strategy — B2B segment (deck)" target="_blank" rel="noopener" style="color:var(--accent)">Slides (PDF)</a>
+        </div>
+      </div>
+      <div class="mat-card reveal">
+        <div class="k">External · Apple webinar</div>
+        <h4>Modern VM Management on macOS</h4>
+        <p>Co-hosted technical webinar with Apple for enterprise IT admins, part of ongoing partner co-marketing.</p>
+        <div class="links">
+          <a href="https://stream.lib.utah.edu/index.php?c=details&amp;id=13726" target="_blank" rel="noopener" style="color:var(--accent)">▶ Watch ↗</a>
+        </div>
+      </div>
+      <div class="mat-card reveal">
+        <div class="k">External · Live demo</div>
+        <h4>Online Product Demo — Parallels Desktop</h4>
+        <p>Live, unedited walkthrough of the product for the admin community.</p>
+        <div class="links">
+          <a href="https://www.youtube.com/watch?v=F_lKQ_jslH0" class="modal-link" data-video data-embed="https://www.youtube-nocookie.com/embed/F_lKQ_jslH0?autoplay=1" data-title="Live online product demo — Parallels Desktop" target="_blank" rel="noopener" style="color:var(--accent)">▶ Watch</a>
+        </div>
       </div>
     </div>
   </div>
@@ -924,6 +1045,43 @@
       else if(e.key === 'ArrowRight') step(1);
     });
   })();
+  // Materials carousel + copy-link
+  (function(){
+    var track = document.getElementById('mat-track');
+    if(!track) return;
+    function step(dir){
+      var card = track.querySelector('.mat-card');
+      var gap = 20;
+      var amount = (card ? card.getBoundingClientRect().width : 300) + gap;
+      track.scrollBy({left: dir * amount, behavior: 'smooth'});
+    }
+    var prevBtn = document.querySelector('.mat-prev');
+    var nextBtn = document.querySelector('.mat-next');
+    if(prevBtn) prevBtn.addEventListener('click', function(){ step(-1); });
+    if(nextBtn) nextBtn.addEventListener('click', function(){ step(1); });
+
+    var copyBtn = document.getElementById('mat-copy-link');
+    if(copyBtn){
+      var defaultLabel = copyBtn.textContent;
+      copyBtn.addEventListener('click', function(){
+        var url = location.origin + location.pathname + '#materials';
+        function done(){
+          copyBtn.classList.add('copied');
+          copyBtn.textContent = '✓ Link copied';
+          setTimeout(function(){
+            copyBtn.classList.remove('copied');
+            copyBtn.textContent = defaultLabel;
+          }, 1800);
+        }
+        if(navigator.clipboard && navigator.clipboard.writeText){
+          navigator.clipboard.writeText(url).then(done).catch(function(){ window.prompt('Copy this link:', url); });
+        } else {
+          window.prompt('Copy this link:', url);
+        }
+      });
+    }
+  })();
+
   // Reveal on scroll
   var io = new IntersectionObserver(function(entries){
     entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });

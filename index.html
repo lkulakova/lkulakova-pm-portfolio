@@ -166,7 +166,7 @@
   .chip{
     background:var(--accent-soft);border:1px solid rgba(36,84,196,.22);color:var(--text);
     border-radius:10px;padding:9px 10px;font-size:.88rem;font-weight:500;
-    min-width:0;text-align:center;line-height:1.35;white-space:normal;overflow-wrap:anywhere;
+    min-width:0;text-align:center;line-height:1.35;white-space:normal;overflow-wrap:normal;word-break:normal;hyphens:none;
     display:flex;align-items:center;justify-content:center;
   }
   .chip b{color:var(--accent);font-weight:700}
@@ -499,6 +499,12 @@
         </div>
         <div class="case-body">
           <div class="case-inner">
+            <div class="case-grid">
+              <div class="cblock"><h4>The problem</h4><p>Enterprises moving to Macs keep hitting the same wall: a few Windows-only apps. Giving those users Windows machines forfeits the benefits of Mac, and delivering them with virtual machines meant heavy preparation for admins and a full second operating system for users.</p></div>
+              <div class="cblock"><h4>The strategy</h4><p>Reframed the problem from delivering a Windows virtual machine to delivering the app. The solution had to cover everything admins need, not just the easy path: a streamlined deployment through the management tools they already run, a secured Windows layer that stays out of the user's way, and the ability to add their own security tools. I defined that scope and the positioning around it, so the product reads as a new category of solution for business Mac environments.</p></div>
+              <div class="cblock"><h4>The execution</h4><p>I owned the admin side end to end and turned the strategy into a release scope: ranking every capability and cutting what would not hold the date. I resolved prioritization conflicts between customer requests, internal stakeholders, development teams, and tight deadlines. I ran the technical preview with customers, partners, and Apple field teams to test the scope against real environments before launch, and fed what we learned into the roadmap. I equipped sales, distributors, support, and Apple field teams to position, demo, and support the product, through enablement sessions, demo accounts, and live demos, and launched the preview publicly at MacAdmins and JNUC 2026 (<a href="assets/files/JNUC2026_Mac-Native_Way_to_Deliver_Windows_Apps.pdf" class="modal-link" data-title="JNUC 2026 — The Mac-Native Way to Deliver Windows Apps (slides)" target="_blank" rel="noopener" style="color:var(--accent);font-weight:600">JNUC 2026 slides</a>).</p></div>
+              <div class="cblock"><h4>The result</h4><p>From kickoff to technical preview in 6 months. The addressable market extended to healthcare, consultancies, and knowledge workers across organizations. 40+ organizations took part in the preview, including Apple and Jamf and small and large IT teams.</p></div>
+            </div>
             <div class="deck" id="deck-jnuc26">
               <div class="deck-stage">
                 <img src="assets/img/jnuc2026/slide-01.jpg" alt="JNUC 2026 slide 1">
@@ -511,16 +517,10 @@
                 <a href="assets/files/JNUC2026_Mac-Native_Way_to_Deliver_Windows_Apps.pdf" class="modal-link" data-title="JNUC 2026 — The Mac-Native Way to Deliver Windows Apps (slides)" target="_blank" rel="noopener">Open full slides (PDF)</a>
               </div>
             </div>
-            <div class="case-grid">
-              <div class="cblock"><h4>The problem</h4><p>Enterprises moving to Macs keep hitting the same wall: a few Windows-only apps. Giving those users Windows machines forfeits the benefits of Mac, and delivering them with virtual machines meant heavy preparation for admins and a full second operating system for users.</p></div>
-              <div class="cblock"><h4>The strategy</h4><p>Reframed the problem from delivering a Windows virtual machine to delivering the app. The solution had to cover everything admins need, not just the easy path: a streamlined deployment through the management tools they already run, a secured Windows layer that stays out of the user's way, and the ability to add their own security tools. I defined that scope and the positioning around it, so the product reads as a new category of solution for business Mac environments.</p></div>
-              <div class="cblock"><h4>The execution</h4><p>I owned the admin side end to end and turned the strategy into a release scope: ranking every capability and cutting what would not hold the date. I resolved prioritization conflicts between customer requests, internal stakeholders, development teams, and tight deadlines. I ran the technical preview with customers, partners, and Apple field teams to test the scope against real environments before launch, and fed what we learned into the roadmap. I equipped sales, distributors, support, and Apple field teams to position, demo, and support the product, through enablement sessions, demo accounts, and live demos, and launched the preview publicly at MacAdmins and JNUC 2026 (<a href="assets/files/JNUC2026_Mac-Native_Way_to_Deliver_Windows_Apps.pdf" class="modal-link" data-title="JNUC 2026 — The Mac-Native Way to Deliver Windows Apps (slides)" target="_blank" rel="noopener" style="color:var(--accent);font-weight:600">JNUC 2026 slides</a>).</p></div>
-              <div class="cblock"><h4>The result</h4><p>From kickoff to technical preview in 6 months. The addressable market extended to healthcare, consultancies, and knowledge workers across organizations. 40+ organizations took part in the preview, including Apple and Jamf and small and large IT teams.</p></div>
-            </div>
             <div class="case-results">
-              <div class="chip"><b>6 months</b> to technical preview</div>
-              <div class="chip"><b>40+</b> preview organizations</div>
-              <div class="chip"><b>MacAdmins &amp; JNUC 2026</b> launch talks</div>
+              <div class="chip"><span><b>6 months</b> to technical preview</span></div>
+              <div class="chip"><span><b>40+</b> preview organizations</span></div>
+              <div class="chip"><span><b>MacAdmins &amp; JNUC 2026</b> launch talks</span></div>
             </div>
           </div>
         </div>
@@ -550,10 +550,10 @@
               <figure><a href="assets/img/case_vm_policies.jpg" class="lb-link"><img src="assets/img/case_vm_policies.jpg" alt="VM policy configuration in the Management Portal" loading="lazy"></a><figcaption>Policies: centralized control over VM behaviour and security</figcaption></figure>
             </div>
             <div class="case-results">
-              <div class="chip"><b>0→1</b> portal in &lt;12 mo</div>
-              <div class="chip"><b>Fortune 500</b> adoption in 6 mo</div>
-              <div class="chip"><b>+25%</b> addressable market</div>
-              <div class="chip"><b>+15%</b> returning-customer revenue</div>
+              <div class="chip"><span><b>0→1</b> portal in &lt;12 mo</span></div>
+              <div class="chip"><span><b>Fortune 500</b> adoption in 6 mo</span></div>
+              <div class="chip"><span><b>+25%</b> addressable market</span></div>
+              <div class="chip"><span><b>+15%</b> returning-customer revenue</span></div>
             </div>
           </div>
         </div>
@@ -581,10 +581,10 @@
               <figure><a href="assets/img/case_pde_schema.png" class="lb-link"><img src="assets/img/case_pde_schema.png" alt="Parallels Desktop Enterprise deployment architecture: identity provider, MDM, Management Portal, and end-user experience" loading="lazy"></a><figcaption>The deployment architecture I designed the product around — identity, MDM, the Management Portal, and the end-user experience in one flow</figcaption></figure>
             </div>
             <div class="case-results">
-              <div class="chip">SSO: <b>SAML · SCIM</b></div>
-              <div class="chip"><b>Jamf · Intune · Apple</b> ecosystem</div>
-              <div class="chip"><b>Golden Image</b> deployment at scale</div>
-              <div class="chip">Guides <b>adopted by sales &amp; GTM</b></div>
+              <div class="chip"><span>SSO: <b>SAML · SCIM</b></span></div>
+              <div class="chip"><span><b>Jamf · Intune · Apple</b> ecosystem</span></div>
+              <div class="chip"><span><b>Golden Image</b> deployment at scale</span></div>
+              <div class="chip"><span>Guides <b>adopted by sales &amp; GTM</b></span></div>
             </div>
           </div>
         </div>
@@ -609,10 +609,10 @@
               <div class="cblock"><h4>The result</h4><p>Became a recognized name in the MacAdmins community, returned as a speaker in 2026 with "The Mac-Native Way to Deliver Windows Apps, Powered by Parallels Desktop." Customer feedback from this outbound work directly seeded the scope that made the product enterprise-ready.</p></div>
             </div>
             <div class="case-results">
-              <div class="chip"><b>MacAdmins</b> speaker — 2× (2025 &amp; 2026)</div>
-              <div class="chip"><b>JNUC</b> speaker</div>
-              <div class="chip">Joint <b>Apple</b> webinars</div>
-              <div class="chip">Feedback <b>seeded the roadmap</b></div>
+              <div class="chip"><span><b>MacAdmins</b> speaker — 2× (2025 &amp; 2026)</span></div>
+              <div class="chip"><span><b>JNUC</b> speaker</span></div>
+              <div class="chip"><span>Joint <b>Apple</b> webinars</span></div>
+              <div class="chip"><span>Feedback <b>seeded the roadmap</b></span></div>
             </div>
           </div>
         </div>
@@ -637,10 +637,10 @@
               <div class="cblock"><h4>The result</h4><p>NPS climbed from negative into the 30s; monthly users seeing the Toolbox agent grew 3×; MAU rose 20%.</p></div>
             </div>
             <div class="case-results">
-              <div class="chip">NPS <b>−7 → 30+</b></div>
-              <div class="chip"><b>+20%</b> MAU</div>
-              <div class="chip"><b>3×</b> agent visibility</div>
-              <div class="chip"><b>1M+</b> users owned</div>
+              <div class="chip"><span>NPS <b>−7 → 30+</b></span></div>
+              <div class="chip"><span><b>+20%</b> MAU</span></div>
+              <div class="chip"><span><b>3×</b> agent visibility</span></div>
+              <div class="chip"><span><b>1M+</b> users owned</span></div>
             </div>
           </div>
         </div>
@@ -665,9 +665,9 @@
               <div class="cblock"><h4>The result</h4><p>98% install success rate and 200,000 monthly installations across the Product portfolio, on a foundation other teams could build on without bottlenecks.</p></div>
             </div>
             <div class="case-results">
-              <div class="chip"><b>98%</b> install success</div>
-              <div class="chip"><b>200K</b> monthly installs</div>
-              <div class="chip">New <b>operating model</b> from scratch</div>
+              <div class="chip"><span><b>98%</b> install success</span></div>
+              <div class="chip"><span><b>200K</b> monthly installs</span></div>
+              <div class="chip"><span>New <b>operating model</b> from scratch</span></div>
             </div>
           </div>
         </div>

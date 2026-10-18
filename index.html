@@ -333,8 +333,10 @@
   .modal-box{
     width:min(1100px,96vw);height:min(800px,90vh);
     background:#0f1520;border-radius:14px;overflow:hidden;
-    display:flex;flex-direction:column;box-shadow:0 24px 64px rgba(0,0,0,.5);
+    display:flex;flex-direction:column;box-shadow:0 24px 64px rgba(0,0,0,.5);position:relative;
   }
+  .modal-loading{display:none;position:absolute;left:0;right:0;bottom:0;top:52px;align-items:center;justify-content:center;color:#9db4e8;font-size:.95rem;pointer-events:none;background:#242a36}
+  .modal.loading .modal-loading{display:flex}
   .modal.video .modal-box{width:min(960px,96vw);height:auto}
   .modal-bar{
     display:flex;align-items:center;gap:16px;padding:10px 16px;
@@ -905,6 +907,7 @@
       <button class="modal-x" aria-label="Close">✕</button>
     </div>
     <iframe class="modal-frame" src="" title="" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+    <div class="modal-loading">Loading…</div>
   </div>
 </div>
 
@@ -948,6 +951,7 @@
       titleEl.textContent = a.getAttribute('data-title') || a.textContent.trim();
       extLink.href = href;
       dlLink.href = href;
+      modal.classList.add('loading');
       frame.src = embed;
       frame.title = titleEl.textContent;
       modal.classList.add('on');
@@ -955,11 +959,13 @@
     }
     function closeModal(){
       modal.classList.remove('on');
+      modal.classList.remove('loading');
       frame.src = '';           // stops video playback
       var caseOpen = document.querySelector('.case-modal.on');
       document.body.style.overflow = caseOpen ? 'hidden' : '';
     }
 
+    frame.addEventListener('load', function(){ modal.classList.remove('loading'); });
     document.querySelectorAll('.modal-link').forEach(function(a){
       a.addEventListener('click', function(e){
         e.preventDefault();
